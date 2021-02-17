@@ -210,6 +210,7 @@ export default defineComponent({
       // @ts-ignore
       document.addEventListener(isTouch ? 'touchmove' : 'mousemove', handleDrag);
       document.addEventListener(isTouch ? 'touchend' : 'mouseup', handleDragEnd);
+      event.preventDefault();
     }
 
     function handleDragEnd(): void {
@@ -320,7 +321,9 @@ export default defineComponent({
           class: 'carousel__track',
           style: trackStyle.value,
           onMousedown: handleDragStart,
+          onMouseup: handleDragEnd,
           onTouchstart: handleDragStart,
+          onTouchend: handleDragEnd,
         },
         slidesElements
       );
